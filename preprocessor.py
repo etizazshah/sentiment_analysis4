@@ -6,6 +6,7 @@ from gensim.parsing.preprocessing import remove_stopwords
 from sklearn.feature_extraction.text import CountVectorizer
 from nltk import word_tokenize
 
+# Download NLTK resources
 nltk.download('punkt')
 nltk.download('wordnet')
 nltk.download('stopwords')
@@ -32,7 +33,8 @@ def preprocess_text(text):
 
     # Remove stopwords
     stop_words = set(stopwords.words('english'))
-    text = remove_stopwords(text)
+    tokens = word_tokenize(text)
+    text = ' '.join(word for word in tokens if word not in stop_words)
 
     # Tokenization and lemmatization
     tokens = word_tokenize(text)
